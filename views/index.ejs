@@ -3,53 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="1076973195205-ej31kbtb7b1f0o3m8cdanlj330elbb2h.apps.googleusercontent.com"
+    />
     <title>Instagram</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <div class="cont">
-      <div class="innerCont">
-        <div class="upperCont">
-          <div class="textImage">
-            <img src="/images/instagram-text-image.png" alt="" />
+      <form action="/register" method="post">
+        <div class="innerCont">
+          <div class="upperCont">
+            <div class="textImage">
+              <img src="/images/instagram-text-image.png" alt="" />
+            </div>
+            <div class="inptBox">
+              <input
+                type="email"
+                placeholder="Email"
+                autocomplete="email"
+                name="email"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Full Name"
+                name="fullname"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Username"
+                autocomplete="username"
+                name="username"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+              />
+            </div>
+            <div class="info">
+              <p>
+                By signing up, you agree to our <a href="">Terms</a> ,
+                <a href="">Privacy Policy</a> and
+                <a href="">Cookies Policy </a>.
+              </p>
+            </div>
+            <div class="signUpbtn">
+              <button>Sign up</button>
+            </div>
+            <div class="boxOfLine">
+              <div class="line"></div>
+              <p>OR</p>
+              <div class="line"></div>
+            </div>
+            <!-- <div class="pgoogle">
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div> -->
           </div>
-          <div class="inptBox">
-            <input
-              type="email"
-              placeholder="Email"
-              autocomplete="email"
-              required
-            />
-            <input type="text" placeholder="Full Name" required />
-            <input
-              type="text"
-              placeholder="Username"
-              autocomplete="username"
-              required
-            />
-            <input type="password" placeholder="Password" required />
-          </div>
-          <div class="info">
-            <p>
-              By signing up, you agree to our <a href="">Terms</a> , <a href="">Privacy Policy</a> and <a href="">Cookies
-              Policy </a>.
-            </p>
-          </div>
-          <div class="signUpbtn">
-            <button>Sign up</button>
-          </div>
-          <div class="boxOfLine">
-            <div class="line"></div>
-            <p>OR</p>
-            <div class="line"></div>
+          <div class="lowerCont">
+            <p>Have an account? <a href="/signin">Log in</a></p>
           </div>
         </div>
-        <div class="lowerCont">
-          <p>Have an account? <a href="/login">Log in</a></p>
-        </div>
-      </div>
+      </form>
     </div>
-
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="/javascripts/script.js"></script>
   </body>
 </html>

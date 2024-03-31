@@ -63,6 +63,10 @@
     font-size: small;
   }
   
+  .innerCont h4{
+    color: red;
+  }
+  
   .signUpbtn{
     width: 80%;
     height: 38px;
@@ -73,6 +77,10 @@
     border-radius: 10px;
     margin: 20px 0;
     color: white;
+  }
+
+  .signUpbtn button{
+    width: 100%;
   }
   
   .boxOfLine{

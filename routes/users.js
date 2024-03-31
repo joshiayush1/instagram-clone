@@ -1,9 +1,35 @@
-var express = require('express');
-var router = express.Router();
+var mongoose = require("mongoose");
+var plm = require('passport-local-mongoose');
+mongoose.connect("mongodb://127.0.0.1:27017/instagramdb");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+var usersSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    unique: true,
+  },
+  fullname: {
+    type: String,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+  type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  profilePicture: {
+    type: String,
+  },
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+  }],
 });
 
-module.exports = router;
+usersSchema.plugin(plm);
+module.exports = mongoose.model("User", usersSchema);

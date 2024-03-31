@@ -88,6 +88,14 @@ body{
   color: white;
 }
 
+.signUpbtn button{
+  width: 100%;
+}
+
+.pgoogle{
+  margin: 10px 0 0;
+}
+
 .boxOfLine{
   display: flex;
   width: 80%;

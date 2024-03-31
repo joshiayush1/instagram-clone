@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cont{
+    width: 100vw;
+    height: 60px;
+    border: 2px solid red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .cont i{
+    width: 20px;
+    height: 20px;
+  }

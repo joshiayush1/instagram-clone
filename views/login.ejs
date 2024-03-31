@@ -8,35 +8,46 @@
   </head>
   <body>
     <div class="cont">
-      <div class="innerCont">
-        <div class="upperCont">
-          <div class="textImage">
-            <img src="/images/instagram-text-image.png" alt="" />
+      <form action="/login" method="post">
+        <div class="innerCont">
+          <div class="upperCont">
+            <div class="textImage">
+              <img src="/images/instagram-text-image.png" alt="" />
+            </div>
+            <div class="inptBox">
+              <input
+                type="text"
+                placeholder="Username"
+                autocomplete="username"
+                name="username"
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                name="password"
+                required
+              />
+            </div>
+            <% if( error.length > 0){ %>
+            <h4><%= error %></h4>
+            <% } %>
+            <div class="signUpbtn">
+              <button>Log in</button>
+            </div>
+            <div class="boxOfLine">
+              <div class="line"></div>
+              <p>OR</p>
+              <div class="line"></div>
+            </div>
           </div>
-          <div class="inptBox">
-            <input
-              type="text"
-              placeholder="Username"
-              autocomplete="username"
-              required
-            />
-            <input type="password" placeholder="Password" required />
-          </div>
-          <div class="signUpbtn">
-            <button>Log in</button>
-          </div>
-          <div class="boxOfLine">
-            <div class="line"></div>
-            <p>OR</p>
-            <div class="line"></div>
+          <div class="lowerCont">
+            <p>Don't have an account? <a href="/">Sign up</a></p>
           </div>
         </div>
-        <div class="lowerCont">
-          <p>Don't have an account? <a href="/">Sign up</a></p>
-        </div>
-      </div>
+      </form>
     </div>
-
-    <script src="https://cdn.tailwindcss.com"></script>
   </body>
+  <script src="https://cdn.tailwindcss.com"></script>
 </html>

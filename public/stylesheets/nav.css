@@ -4,13 +4,15 @@
     box-sizing: border-box;
 }
 
-.cont{
+.contD{
     width: 100vw;
     height: 60px;
     border: 2px solid red;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    bottom: 0;
   }
 
   .cont i{

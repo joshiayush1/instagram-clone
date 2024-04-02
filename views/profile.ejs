@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/profile.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
     <div class="cont">
-        <div class="allUserData">
-            <div class="outerDivOfIfAndEdit">
-                <div class="dp">
-                  dp  <!-- <img src="" alt=""> -->
-                </div>
-                <div class="idAndEditPhoto">
-                    <h4>id</h4>
-                    <button>Edit Profile</button>
-                </div>
-            </div>
-            <div class="someUserData">
-                <h3>name</h3>
-                <p>description</p>
-            </div>
+      <div class="allUserData">
+        <div class="outerDivOfIfAndEdit">
+          <div class="dp">
+            <img
+              src="https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=is&k=20&c=tw9TuTigzhSlLA_b1Avy0X6GNF9ZFVvgTHIZ9i68Q0I="
+              alt=""
+            />
+          </div>
+          <div class="idAndEditPhoto">
+            <h4>ayujoshii</h4>
+            <button>Edit Profile</button>
+          </div>
         </div>
-        <div class="userPosts">
-            photos
+        <div class="someUserData">
+          <p>Ayush Joshi</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque
+            dignissimos sint reiciendis ipsam cupiditate molestias alias facere.
+            Vero, ipsa sit!
+          </p>
         </div>
+      </div>
+
+        <div class="insights">
+          <div class="postscount">
+            <h3>1</h3>
+            <p>posts</p>
+          </div>
+          <div class="followersCount">
+            <h3>100</h3>
+            <p>followers</p>
+          </div>
+          <div class="followingCount">
+            <h3>100</h3>
+            <p>following</p>
+          </div>
+        </div>
+      <div class="userPosts">posts</div>
+      <% include ./nav.ejs %>
     </div>
-    <% include ./nav.ejs %>
-</body>
+  </body>
 </html>

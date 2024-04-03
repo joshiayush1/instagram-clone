@@ -10,20 +10,28 @@ router.get("/", function (req, res) {
   res.render("index");
 });
 
-router.get("/nav", function (req, res) {
-  res.render("nav");
-});
-
-router.get("/editprofile", function (req, res) {
-  res.render("editprofile");
-});
-
 router.get("/signin", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });
 
+router.get("/nav", function (req, res) {
+  res.render("nav");
+});
+
 router.get("/profile", isLoggedIn, function (req, res) {
-  res.render("profile");
+  res.render("profile", {nav:true});
+});
+
+router.get("/editprofile", isLoggedIn, function (req, res) {
+  res.render("editprofile", {nav:true});
+});
+
+router.get("/feed", function (req, res) {
+  res.render("feed", {nav:true});
+});
+
+router.get("/home", function (req, res) {
+  res.render("home", {nav:true});
 });
 
 router.post("/register", function (req, res) {

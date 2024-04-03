@@ -45,7 +45,7 @@
     width: 77px;
     height: 77px;
     border-radius: 99px;
-    background-size: contain;
+    background-size: cover;
   }
 
   .idAndEditPhoto{

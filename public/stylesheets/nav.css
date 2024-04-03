@@ -7,15 +7,22 @@
 .contD{
     width: 100vw;
     height: 60px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: fixed;
     bottom: 0;
+    background-color: white;
   }
 
   .cont i{
     width: 20px;
     height: 20px;
+  }
+
+  .profileD>p>img{
+    width: 20px;
+    height: 20px;
+    border-radius: 99px;
   }

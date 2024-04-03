@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/editprofile.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <form action="/login" method="post">
+        <div class="innerCont">
+          <div class="upperCont">
+            <div class="textImage">
+              <img src="/images/instagram-text-image.png" alt="" />
+            </div>
+            <div class="inptBox">
+                <button>Change photo</button>
+              <input
+                type="text"
+                placeholder="Name"
+                autocomplete="username"
+                name="username"
+                required
+              />
+              <textarea
+                placeholder="Description"
+                autocomplete="current-password"
+                name="password"
+                required
+              ></textarea>
+            </div>
+            <div class="signUpbtn">
+              <button>Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>

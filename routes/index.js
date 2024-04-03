@@ -14,6 +14,10 @@ router.get("/nav", function (req, res) {
   res.render("nav");
 });
 
+router.get("/editprofile", function (req, res) {
+  res.render("editprofile");
+});
+
 router.get("/signin", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });

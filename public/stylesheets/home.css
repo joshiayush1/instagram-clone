@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
 
 html,
@@ -15,15 +16,17 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid gold;
+  /* border: 2px solid gold; */
 }
 
 .textLogo {
   width: 100%;
   min-height: 60px;
-  border: 2px solid rgb(97, 61, 14);
+  /* border: 2px solid rgb(97, 61, 14); */
   display: flex;
   align-items: center;
+  position: fixed;
+  background-color: #fff;
 }
 
 .textLogo img {
@@ -34,22 +37,25 @@ body {
 
 .storiesBar {
   min-width: 100%;
-  height: 85px;
+  min-height: 85px;
   display: flex;
   align-items: center;
-  border: 2px solid hotpink;
+  /* border: 2px solid hotpink; */
+  overflow: scroll;
+  scrollbar-width: none;
+  margin: 60px 0 0;
 }
 
 .stories {
   width: 100%;
   height: 100%;
-  border: 2px solid lawngreen;
+  /* border: 2px solid lawngreen; */
   display: flex;
   gap: 10px;
 }
 
 .story {
-  width: 60px;
+  min-width: 60px;
   height: 100%;
   /* border: 2px solid indianred; */
   display: flex;
@@ -64,7 +70,7 @@ body {
   height: 56px;
   border-radius: 99px;
   background-size: cover;
-  border: 3px solid rgb(232, 56, 85);
+  /* border: 3px solid rgb(232, 56, 85); */
 }
 
 .story p {
@@ -76,13 +82,13 @@ body {
   min-height: 100%;
   display: flex;
   justify-content: center;
-  border: 2px solid forestgreen;
+  /* border: 2px solid forestgreen; */
 }
 
 .posts {
   width: 100%;
   height: 100%;
-  border: 2px solid blueviolet;
+  /* border: 2px solid blueviolet; */
   display: flex;
   flex-direction: column;
 }
@@ -93,42 +99,54 @@ body {
   display: flex;
   align-items: center;
   padding: 0 0 0 10px;
-  border: 2px solid saddlebrown;
+  /* border: 2px solid saddlebrown; */
+  gap: 10px;
 }
 
-.postOfFollower{
+.byFollower img {
+  width: 20px;
+  height: 20px;
+  border-radius: 99px;
+}
+
+.byFollower h1{
+  margin: 0 0 15px;
+  font-size: xx-large;
+}
+
+.postOfFollower {
   width: 100%;
   height: auto;
-  border: 2px solid teal;
+  /* border: 2px solid teal; */
 }
 
-.postOfFollower img{
-    width: 100%;
+.postOfFollower img {
+  width: 100%;
+  height: auto;
+  background-size: contain;
+}
+
+@media screen and (min-width: 600px) {
+  .postOfFollower img {
+    width: 300px;
     height: auto;
     background-size: contain;
-}
-
-@media screen and (min-width:600px){
-    .postOfFollower img{
-        width: 300px;
-        height: auto;
-        background-size: contain;
-    }
+  }
 }
 
 .insightsOfFollower {
   padding: 0 0 0 10px;
   height: 40px;
   width: 100%;
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   display: flex;
   align-items: center;
   padding: 0 0 0 10px;
 }
 
-.insightsOfFollower i{
-    height: 24px;
-    width: 24px;
+.insightsOfFollower i {
+  height: 24px;
+  width: 24px;
 }
 
 .descriptionOfFollower {
@@ -136,7 +154,7 @@ body {
   min-height: 40px;
   max-height: 60px;
   width: 100%;
-  border: 2px solid rebeccapurple;
+  /* border: 2px solid rebeccapurple; */
   display: flex;
   align-items: center;
 }

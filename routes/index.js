@@ -14,9 +14,9 @@ router.get("/signin", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });
 
-router.get("/nav", function (req, res) {
-  res.render("nav");
-});
+// router.get("/nav", function (req, res) {
+//   res.render("nav");
+// });
 
 router.get("/profile", isLoggedIn, function (req, res) {
   res.render("profile", {nav:true});
@@ -30,8 +30,12 @@ router.get("/feed", function (req, res) {
   res.render("feed", {nav:true});
 });
 
-router.get("/home", function (req, res) {
+router.get("/home", isLoggedIn, function (req, res) {
   res.render("home", {nav:true});
+});
+
+router.get("/addpost", function (req, res) {
+  res.render("addpost", {nav:true});
 });
 
 router.post("/register", function (req, res) {
@@ -49,8 +53,7 @@ router.post("/register", function (req, res) {
   });
 });
 
-router.post(
-  "/login",
+router.post("/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
     failureRedirect: "/signin",

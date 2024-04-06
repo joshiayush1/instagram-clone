@@ -46,7 +46,7 @@ body {
   width: 77px;
   height: 77px;
   border-radius: 99px;
-  background-size: cover;
+  background-size: contain;
 }
 
 .idAndEditPhoto {

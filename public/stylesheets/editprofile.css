@@ -63,7 +63,7 @@ body {
   font-size: small;
 }
 
-.inptBox button {
+.inptBox p {
   width: 80%;
   height: 38px;
   border: none;
@@ -75,6 +75,7 @@ body {
   border-radius: 10px;
   color: white;
   margin: 5px;
+  cursor: pointer;
 }
 
 .inptBox textarea {

@@ -8,18 +8,31 @@
   </head>
   <body>
     <div class="cont">
-      <form action="/edit" method="post" enctype="multipart/form-data">
+      <form action="/updateprofile" method="post" enctype="multipart/form-data">
         <div class="innerCont">
           <div class="upperCont">
             <div class="textImage">
               <img src="/images/instagram-text-image.png" alt="" />
             </div>
             <div class="inptBox">
-              <button id="dp">Change photo</button>
-              <input type="file" hidden id="iptdp" name="image" />
-              <input type="text" placeholder="Username" name="username" />
-              <input type="text" placeholder="Name" name="name" />
-              <textarea placeholder="Description" name="password"></textarea>
+              <p id="dp">Change photo</p>
+              <input type="file" id="iptdp" hidden name="image" />
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                value="<%= user.username.toLowerCase() %>"
+              />
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                value="<%= user.fullname %>"
+              />
+              <textarea
+                placeholder="Description"
+                name="description"
+              ><%= user.description %></textarea>
             </div>
             <div class="signUpbtn">
               <button type="submit">Submit</button>
@@ -28,7 +41,7 @@
         </div>
       </form>
     </div>
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="/javascripts/editprofile.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var postsSchema = new mongoose.Schema({
-  description: {
+  caption: {
     type: String,
   },
   createdAt: {
@@ -13,6 +13,12 @@ var postsSchema = new mongoose.Schema({
     required: true,
   },
   user: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  likes: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

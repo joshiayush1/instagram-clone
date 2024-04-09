@@ -8,28 +8,28 @@
   </head>
   <body>
     <div class="cont">
-      <form action="/login" method="post">
+      <form action="/uploadpost" method="post" enctype="multipart/form-data">
         <div class="innerCont">
           <div class="upperCont">
             <div class="textImage">
               <img src="/images/instagram-text-image.png" alt="" />
             </div>
             <div class="inptBox">
-                <button>Add photo</button>
+                <p id="post">Add photo</p>
+                <input type="file" id="ipt" name="photo" hidden>
               <textarea
-                placeholder="Description"
-                autocomplete="current-password"
-                name="password"
-                required
+                placeholder="Caption"
+                name="caption"
               ></textarea>
             </div>
             <div class="signUpbtn">
-              <button>Post</button>
+              <button type="submit">Post</button>
             </div>
           </div>
         </div>
       </form>
     </div>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/javascripts/addpost.js"></script>
   </body>
 </html>

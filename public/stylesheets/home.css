@@ -143,7 +143,7 @@ body {
   /* border: 2px solid yellow; */
   display: flex;
   justify-content: center;
-  padding: 0px 12px 0 10px;
+  padding: 0px 12px 0 8px;
   flex-direction: column;
 }
 
@@ -159,6 +159,7 @@ body {
   /* border: 2px solid rebeccapurple; */
   display: flex;
   align-items: center;
+  gap: 5px;
 
 }
 

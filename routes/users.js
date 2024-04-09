@@ -29,6 +29,9 @@ var usersSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
   }],
+  description: {
+    type: String,
+  }
 });
 
 usersSchema.plugin(plm);

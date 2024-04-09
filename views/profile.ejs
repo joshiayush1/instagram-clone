@@ -13,22 +13,20 @@
           <div class="dp">
             <img
               class="cursor-pointer"
-              src="https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=is&k=20&c=tw9TuTigzhSlLA_b1Avy0X6GNF9ZFVvgTHIZ9i68Q0I="
+              src="/images/uploads/<%= user.profilePicture %>"
               alt=""
             />
           </div>
           <div class="idAndEditPhoto">
-            <p>ayujoshii</p>
+            <p><%= user.username %></p>
             <button class="text-sm font-semibold"><a href="/editprofile" class="w-full">Edit Profile</a></button>
             <button class="text-sm font-semibold"><a href="/logout" class="w-full">Log out</a></button>
           </div>
         </div>
         <div class="someUserData">
-          <p class="font-semibold">Ayush Joshi</p>
+          <p class="font-semibold"><%= user.fullname %></p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque
-            dignissimos sint reiciendis ipsam cupiditate molestias alias facere.
-            Vero, ipsa sit!
+            <%= user.description %>
           </p>
         </div>
       </div>

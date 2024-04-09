@@ -37,7 +37,7 @@ body {
 
 .storiesBar {
   min-width: 100%;
-  min-height: 85px;
+  min-height: 110px;
   display: flex;
   align-items: center;
   /* border: 2px solid hotpink; */
@@ -54,7 +54,7 @@ body {
 }
 
 .story {
-  min-width: 60px;
+  min-width: 80px;
   height: 100%;
   /* border: 2px solid indianred; */
   display: flex;
@@ -67,8 +67,8 @@ body {
 }
 
 .story img {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   border-radius: 99px;
   background-size: cover;
   border: 3px solid rgb(232, 56, 85);
@@ -99,7 +99,7 @@ body {
   height: 62px;
   display: flex;
   align-items: center;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 10px;
   /* border: 2px solid saddlebrown; */
   gap: 10px;
   cursor: pointer;
@@ -138,26 +138,30 @@ body {
 }
 
 .insightsOfFollower {
-  padding: 0 0 0 10px;
-  height: 40px;
+  height: 50px;
   width: 100%;
   /* border: 2px solid yellow; */
   display: flex;
-  align-items: center;
-  padding: 0 0 0 10px;
+  justify-content: center;
+  padding: 0px 12px 0 10px;
+  flex-direction: column;
 }
 
-.insightsOfFollower i {
-  height: 24px;
-  width: 24px;
+.insightsOfFollower i{
+  height: 40px;
+  width: 40px;
+  padding: 0px 0 0 3px;
 }
 
 .descriptionOfFollower {
-  padding: 0 0 0 10px;
-  min-height: 40px;
-  max-height: 60px;
+  padding: 0 12px 0 10px;
   width: 100%;
   /* border: 2px solid rebeccapurple; */
   display: flex;
   align-items: center;
+
+}
+
+.dateOfUploadedPost{
+  padding: 0 12px 0 10px;
 }

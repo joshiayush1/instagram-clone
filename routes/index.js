@@ -26,16 +26,24 @@ router.get("/editprofile", isLoggedIn, function (req, res) {
   res.render("editprofile", {nav:true});
 });
 
-router.get("/feed", function (req, res) {
-  res.render("feed", {nav:true});
-});
-
 router.get("/home", isLoggedIn, function (req, res) {
   res.render("home", {nav:true});
 });
 
-router.get("/addpost", function (req, res) {
+router.get("/feed", isLoggedIn, function (req, res) {
+  res.render("feed", {nav:true});
+});
+
+router.get("/searchuser", isLoggedIn, function (req, res) {
+  res.render("searchuser", {nav:true});
+});
+
+router.get("/addpost", isLoggedIn, function (req, res) {
   res.render("addpost", {nav:true});
+});
+
+router.get("/viewpost", isLoggedIn, function (req, res) {
+  res.render("viewpost");
 });
 
 router.post("/register", function (req, res) {

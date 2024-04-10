@@ -21,34 +21,48 @@ router.get("/signin", function (req, res) {
 // });
 
 router.get("/profile", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({username: req.session.passport.user})
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
   res.render("profile", { nav: true, user });
 });
 
 router.get("/editprofile", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({username : req.session.passport.user});
-  res.render("editprofile", {user});
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  res.render("editprofile", { user });
 });
 
-router.post("/updateprofile", upload.single("image"), isLoggedIn, async function (req, res) {
-  let user = await usersModel.findOneAndUpdate(
-    { username: req.session.passport.user },
-    {
-      username: req.body.username,
-      name: req.body.name,
-      description: req.body.description,
-    },
-    { new: true }
-  );
-  if(req.file){
-    user.profilePicture = req.file.filename;
+router.post(
+  "/updateprofile",
+  upload.single("image"),
+  isLoggedIn,
+  async function (req, res) {
+    let user = await usersModel.findOneAndUpdate(
+      { username: req.session.passport.user },
+      {
+        username: req.body.username,
+        name: req.body.name,
+        description: req.body.description,
+      },
+      { new: true }
+    );
+    if (req.file) {
+      user.profilePicture = req.file.filename;
+    }
+    await user.save();
+    res.redirect("/profile");
   }
-  await user.save();
-  res.redirect("/profile");
-});
+);
 
-router.get("/home", isLoggedIn, function (req, res) {
-  res.render("home", { nav: true });
+router.get("/home", isLoggedIn, async function (req, res) {
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  const posts = await postsModel.find().populate("user");
+  console.log(posts);
+  res.render("home", { nav: true, posts, user });
 });
 
 router.get("/feed", isLoggedIn, function (req, res) {
@@ -63,17 +77,24 @@ router.get("/addpost", isLoggedIn, function (req, res) {
   res.render("addpost");
 });
 
-router.post("/uploadpost", upload.single("photo"), isLoggedIn, async function(req, res){
-  const user = await usersModel.findOne({username: req.session.passport.user});
-  const post = await postsModel.create({
-    image: req.file.filename,
-    caption: req.body.caption,
-    user: user._id,
-  });
-  user.posts.push(post._id);
-  await user.save();
-  res.redirect("/home");
-});
+router.post(
+  "/uploadpost",
+  upload.single("photo"),
+  isLoggedIn,
+  async function (req, res) {
+    const user = await usersModel.findOne({
+      username: req.session.passport.user,
+    });
+    const post = await postsModel.create({
+      image: req.file.filename,
+      caption: req.body.caption,
+      user: user._id,
+    });
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect("/home");
+  }
+);
 
 router.get("/viewpost", isLoggedIn, function (req, res) {
   res.render("viewpost");

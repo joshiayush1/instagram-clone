@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var plm = require('passport-local-mongoose');
+var plm = require("passport-local-mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/instagramdb");
 
 var usersSchema = new mongoose.Schema({
@@ -16,7 +16,7 @@ var usersSchema = new mongoose.Schema({
     unique: true,
   },
   password: {
-  type: String,
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -25,13 +25,15 @@ var usersSchema = new mongoose.Schema({
   profilePicture: {
     type: String,
   },
-  posts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Post',
-  }],
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
   description: {
     type: String,
-  }
+  },
 });
 
 usersSchema.plugin(plm);

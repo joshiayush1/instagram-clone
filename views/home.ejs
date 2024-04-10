@@ -149,34 +149,37 @@
         </div>
       </div>
       <div class="followersPosts">
+       <% posts.forEach(function(e){ %>
         <div class="posts">
           <div class="byFollower">
-            <img src="https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=is&k=20&c=tw9TuTigzhSlLA_b1Avy0X6GNF9ZFVvgTHIZ9i68Q0I=" alt="">
-            <p class="text-sm font-semibold">name</p>
+            <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
+            <p class="text-sm font-semibold"><%= e.user.username %></p>
             <!-- <h1 class="text-gray-500">.</h1> -->
             <!-- <p class="text-sm text-gray-500">2h</p> -->
           </div>
           <div class="postOfFollower">
             <img
-              src="https://images.unsplash.com/photo-1705179910388-2e27559c3f39?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTZ8fHxlbnwwfHx8fHw%3D"
+              src="/images/uploads/<%= e.image %>"
               alt=""
             />
           </div>
           <div class="insightsOfFollower">
             <p><i class="fa-regular fa-heart cursor-pointer"></i></p>
-            <p class="text-sm">100 likes</p>
+            <p class="text-sm"><%= e.likes.length %> likes</p>
           </div>
           <div class="descriptionOfFollower">
-            <p class="text-sm font-semibold">name</p>
-            <p class="text-sm">description</p>
+            <p class="text-sm font-semibold"><%= e.user.username %></p>
+            <p class="text-sm"><%= e.caption %></p>
           </div>
           <div class="dateOfUploadedPost">
-            <p class="text-xs text-gray-500">2 hour ago</p>
+            <p class="text-xs text-gray-500"><%= timeSince(e.createdAt) %> ago</p>
           </div>
         </div>
+        <% }) %>
       </div>
     </div>
     <% include ./nav.ejs %>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/javascripts/home.js"></script>
   </body>
 </html>

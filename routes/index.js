@@ -99,7 +99,7 @@ router.post(
   }
 );
 
-router.get("/viewpost", isLoggedIn, function (req, res) {
+router.get("/viewpost:post", isLoggedIn, function (req, res) {
   res.render("viewpost");
 });
 

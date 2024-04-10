@@ -11,12 +11,14 @@
       <div class="allUserData">
         <div class="outerDivOfIfAndEdit">
           <div class="dp">
-            <img
+            <% if(user.profilePicture){ %>
+              <img
               class="cursor-pointer"
               src="/images/uploads/<%= user.profilePicture %>"
               alt=""
-            />
-          </div>
+              />
+           <% } %>
+            </div>
           <div class="idAndEditPhoto">
             <p><%= user.username %></p>
             <button class="text-sm font-semibold"><a href="/editprofile" class="w-full">Edit Profile</a></button>

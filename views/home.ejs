@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="/stylesheets/home.css" />
   </head>
   <body>
+    <% function timeSince(date) { %>
+      <% const seconds = Math.floor((new Date() - new Date(date)) / 1000); %>
+      <% let interval = Math.floor(seconds / 31536000); %>
+    
+      <% if (interval >= 1) { %>
+        <% return interval + " year" + (interval === 1 ? "" : "s"); %>
+      <% } %>
+      <% interval = Math.floor(seconds / 2592000); %>
+      <% if (interval >= 1) { %>
+        <% return interval + " month" + (interval === 1 ? "" : "s"); %>
+      <% } %>
+      <% interval = Math.floor(seconds / 86400); %>
+      <% if (interval >= 1) { %>
+        <% return interval + " day" + (interval === 1 ? "" : "s"); %>
+      <% } %>
+      <% interval = Math.floor(seconds / 3600); %>
+      <% if (interval >= 1) { %>
+        <% return interval + " hour" + (interval === 1 ? "" : "s"); %>
+      <% } %>
+      <% interval = Math.floor(seconds / 60); %>
+      <% if (interval >= 1) { %>
+        <% return interval + " minute" + (interval === 1 ? "" : "s"); %>
+      <% } %>
+      <% return Math.floor(seconds) + " second" + (Math.floor(seconds) === 1 ? "" : "s"); %>
+    <% } %>
     <div class="cont">
       <div class="textLogo">
         <img src="/images/instagram-text-image.png" alt="" />
@@ -149,11 +174,11 @@
         </div>
       </div>
       <div class="followersPosts">
-       <% posts.forEach(function(e){ %>
+       <% posts.reverse().forEach(function(e){ %>
         <div class="posts">
           <div class="byFollower">
             <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
-            <p class="text-sm font-semibold"><%= e.user.username %></p>
+            <p class="text-sm font-semibold"><a href=""><%= e.user.username %></a></p>
             <!-- <h1 class="text-gray-500">.</h1> -->
             <!-- <p class="text-sm text-gray-500">2h</p> -->
           </div>
@@ -168,7 +193,7 @@
             <p class="text-sm"><%= e.likes.length %> likes</p>
           </div>
           <div class="descriptionOfFollower">
-            <p class="text-sm font-semibold"><%= e.user.username %></p>
+            <p class="text-sm font-semibold"><a href=""><%= e.user.username %></a></p>
             <p class="text-sm"><%= e.caption %></p>
           </div>
           <div class="dateOfUploadedPost">
@@ -180,6 +205,6 @@
     </div>
     <% include ./nav.ejs %>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/javascripts/home.js"></script>
+    <!-- <script src="/javascripts/home.js"></script> -->
   </body>
 </html>

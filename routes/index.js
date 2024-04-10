@@ -23,7 +23,10 @@ router.get("/signin", function (req, res) {
 router.get("/profile", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({
     username: req.session.passport.user,
-  });
+  }).populate("posts");
+  // const posts = await postsModel.find({
+  //   username: req.session.passport.user,
+  // });
   res.render("profile", { nav: true, user });
 });
 

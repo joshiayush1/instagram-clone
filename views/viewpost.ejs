@@ -37,7 +37,6 @@
         <img src="/images/instagram-text-image.png" alt="" />
       </div>
       <div class="followersPosts">
-       <% posts.reverse().forEach(function(e){ %>
         <div class="posts">
           <div class="byFollower">
             <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
@@ -63,7 +62,6 @@
             <p class="text-xs text-gray-500"><%= timeSince(e.createdAt) %> ago</p>
           </div>
         </div>
-        <% }) %>
       </div>
     </div>
     <% include ./nav.ejs %>

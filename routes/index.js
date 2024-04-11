@@ -68,8 +68,10 @@ router.get("/home", isLoggedIn, async function (req, res) {
   res.render("home", { nav: true, posts, user });
 });
 
-router.get("/feed", isLoggedIn, function (req, res) {
-  res.render("feed", { nav: true });
+router.get("/feed", isLoggedIn, async function (req, res) {
+  const user = await usersModel.findOne({username: req.session.passport.user});
+  const posts = await postsModel.find().populate("user");
+  res.render("feed", { nav: true, user, posts });
 });
 
 router.get("/searchuser", isLoggedIn, function (req, res) {
@@ -99,7 +101,9 @@ router.post(
   }
 );
 
-router.get("/viewpost:post", isLoggedIn, function (req, res) {
+router.get("/viewpost/:postId", isLoggedIn, function (req, res) {
+  const user = usersModel.findById().populate('user');
+  
   res.render("viewpost");
 });
 

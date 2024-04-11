@@ -54,10 +54,12 @@
         <div class="posts">
           <div class="post">
             <% user.posts.forEach(function(e){ %>
-              <img
-              src="/images/uploads/<%= e.image %>"
-              alt=""
-              />
+              <a href="/post/<%= e._id %>">
+                <img
+                src="/images/uploads/<%= e.image %>"
+                alt=""
+                />
+              </a>
               <% }) %>
           </div>
         </div>

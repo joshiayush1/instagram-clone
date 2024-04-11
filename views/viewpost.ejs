@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/home.css" />
+    <link rel="stylesheet" href="/stylesheets/viewpost.css" />
   </head>
   <body>
     <% function timeSince(date) { %>
@@ -39,27 +39,27 @@
       <div class="followersPosts">
         <div class="posts">
           <div class="byFollower">
-            <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
-            <p class="text-sm font-semibold"><%= e.user.username %></p>
+            <img src="/images/uploads/<%= post.user.profilePicture %>" alt="">
+            <p class="text-sm font-semibold"><%= post.user.username %></p>
             <!-- <h1 class="text-gray-500">.</h1> -->
             <!-- <p class="text-sm text-gray-500">2h</p> -->
           </div>
           <div class="postOfFollower">
             <img
-              src="/images/uploads/<%= e.image %>"
+              src="/images/uploads/<%= post.image %>"
               alt=""
             />
           </div>
           <div class="insightsOfFollower">
             <p><i class="fa-regular fa-heart cursor-pointer"></i></p>
-            <p class="text-sm"><%= e.likes.length %> likes</p>
+            <p class="text-sm flex"><%= post.likes.length %> likes</p>
           </div>
           <div class="descriptionOfFollower">
-            <p class="text-sm font-semibold"><a href=""><%= e.user.username %></a></p>
-            <p class="text-sm"><%= e.caption %></p>
+            <p class="text-sm font-semibold"><a href=""><%= post.user.username %></a></p>
+            <p class="text-sm"><%= post.caption %></p>
           </div>
           <div class="dateOfUploadedPost">
-            <p class="text-xs text-gray-500"><%= timeSince(e.createdAt) %> ago</p>
+            <p class="text-xs text-gray-500"><%= timeSince(post.createdAt) %> ago</p>
           </div>
         </div>
       </div>

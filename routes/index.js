@@ -101,10 +101,9 @@ router.post(
   }
 );
 
-router.get("/viewpost/:postId", isLoggedIn, function (req, res) {
-  const user = usersModel.findById().populate('user');
-  
-  res.render("viewpost");
+router.get('/post/:postId', async (req, res) => {
+    const post = await postsModel.findById(req.params.postId).populate("user");
+    res.render('viewpost', { post });
 });
 
 router.post("/register", function (req, res) {

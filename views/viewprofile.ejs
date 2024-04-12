@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <div class="allUserData">
+        <div class="outerDivOfIfAndEdit">
+          <div class="dp">
+            <% if(user.profilePicture){ %>
+              <img
+              class="cursor-pointer"
+              src="/images/uploads/<%= user.profilePicture %>"
+              alt=""
+              />
+           <% } %>
+            </div>
+          <div class="idAndEditPhoto">
+            <p><%= user.username %></p>
+          </div>
+        </div>
+        <div class="someUserData">
+          <p class="font-semibold"><%= user.fullname %></p>
+          <p>
+            <%= user.description %>
+          </p>
+        </div>
+      </div>
+
+      <div class="insights">
+        <div class="postscount">
+          <h3>1</h3>
+          <p>posts</p>
+        </div>
+        <div class="followersCount cursor-pointer">
+          <h3>100</h3>
+          <p>followers</p>
+        </div>
+        <div class="followingCount cursor-pointer">
+          <h3>100</h3>
+          <p>following</p>
+        </div>
+      </div>
+      <div class="userPosts">
+        <div class="postsSection">
+          <p>POSTS</p>
+        </div>
+        <div class="posts">
+          <div class="post">
+            <% user.posts.forEach(function(e){ %>
+              <a href="/post/<%= e._id %>">
+                <img
+                src="/images/uploads/<%= e.image %>"
+                alt=""
+                />
+              </a>
+              <% }) %>
+          </div>
+        </div>
+      </div>
+      <% include ./nav.ejs %>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>

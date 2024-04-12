@@ -12,28 +12,107 @@ body {
 }
 
 .cont {
-  min-height: 100%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   /* border: 2px solid firebrick; */
   overflow: hidden;
+  align-items: center;
 }
 
 .searchBar {
   width: 100%;
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   /* border: 2px solid violet; */
 }
 
+.iOfSB {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 40px;
+  background-color: rgb(200, 200, 200, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
 .searchBar input {
-  width: 95%;
-  border-radius: 5px;
+  width: 90%;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   height: 40px;
   border: none;
+  outline: none;
   background-color: rgb(200, 200, 200, 0.4);
   padding: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .searchBar input {
+    width: 80%;
+  }
+}
+
+.line{
+  width: 100%;
+  border: 1px solid rgb(200, 200, 200, 0.4);
+  margin: 0 0 10px;
+}
+
+.outestOptions {
+  width: 95%;
+  height: 70px;
+}
+
+.outerOptions {
+  width: 95%;
+  height: 70px;
+}
+
+.options {
+  width: 95%;
+  height: 70px;
+  /* background: #5855; */
+  display: flex;
+  margin: 0 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .options {
+    width: 90%;
+  }
+}
+
+.imageUser {
+  width: 70px;
+  height: 70px;
+  /* border: 2px solid yellow; */
+}
+
+.imageUser img{
+  width: 70px;
+  height: 70px;
+  border-radius: 99px;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* border: 2px solid hotpink; */
+  width: calc(100% - 70px);
+  height: 100%;
+  padding: 0 10px;
+}
+
+.usernameUser{
+  font-size: small;
+}
+.nameUser{
+  color: grey;
 }

@@ -59,6 +59,11 @@ router.post(
   }
 );
 
+router.get("/profile/:userId", isLoggedIn, async function (req, res) {
+  const user = await usersModel.findById(req.params.userId).populate("posts");
+  res.render("viewprofile", { nav: true, user });
+});
+
 router.get("/home", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({
     username: req.session.passport.user,
@@ -75,6 +80,13 @@ router.get("/feed", isLoggedIn, async function (req, res) {
 });
 
 router.get("/searchuser", isLoggedIn, function (req, res) {
+  res.render("searchuser", { nav: true });
+});
+
+router.get("/searchuser/:username", isLoggedIn, async function (req, res) {
+  const regex = new RegExp(`^${req.params.username}`, 'i');
+  const users = await usersModel.find({username: regex});
+  res.json(users);
   res.render("searchuser", { nav: true });
 });
 

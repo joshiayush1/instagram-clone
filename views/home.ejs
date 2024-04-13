@@ -176,20 +176,30 @@
       <div class="followersPosts">
        <% posts.reverse().forEach(function(e){ %>
         <div class="posts">
-          <div class="byFollower">
-            <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
-            <p class="text-sm font-semibold"><a href=""><%= e.user.username %></a></p>
-            <!-- <h1 class="text-gray-500">.</h1> -->
-            <!-- <p class="text-sm text-gray-500">2h</p> -->
-          </div>
-          <div class="postOfFollower">
+          <% if(e.user._id.equals(user._id)){ %>
+            <a href="/profile">
+            <% }else{ %>
+              <a href="/profile/<%= e.user._id %>">
+          <% } %>
+            <div class="byFollower">
+              <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
+              <p class="text-sm font-semibold"><%= e.user.username %></p>
+              <!-- <h1 class="text-gray-500">.</h1> -->
+              <!-- <p class="text-sm text-gray-500">2h</p> -->
+            </div>
+          </a>
+            <div class="postOfFollower">
             <img
               src="/images/uploads/<%= e.image %>"
               alt=""
             />
           </div>
           <div class="insightsOfFollower">
-            <p><i class="fa-regular fa-heart cursor-pointer"></i></p>
+            <% if(e.likes.indexOf(user._id) !== -1){ %>
+              <p><a href="/like/post/<%= e._id %>"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a></p>
+              <% }else{ %>
+                <p><a href="/like/post/<%= e._id %>"><i class="fa-regular fa-heart cursor-pointer"></i></a></p>
+            <% } %>
             <p class="text-sm"><%= e.likes.length %> likes</p>
           </div>
           <div class="descriptionOfFollower">
@@ -205,6 +215,6 @@
     </div>
     <% include ./nav.ejs %>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="/javascripts/home.js"></script> -->
+    <script src="/javascripts/home.js"></script>
   </body>
 </html>

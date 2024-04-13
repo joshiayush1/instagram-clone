@@ -38,12 +38,18 @@
       </div>
       <div class="followersPosts">
         <div class="posts">
-          <div class="byFollower">
-            <img src="/images/uploads/<%= post.user.profilePicture %>" alt="">
-            <p class="text-sm font-semibold"><%= post.user.username %></p>
-            <!-- <h1 class="text-gray-500">.</h1> -->
-            <!-- <p class="text-sm text-gray-500">2h</p> -->
-          </div>
+          <% if(post.user._id.equals(user._id)){ %>
+            <a href="/profile">
+            <% }else{ %>
+              <a href="/profile/<%= post.user._id %>">
+          <% } %>
+            <div class="byFollower">
+              <img src="/images/uploads/<%= post.user.profilePicture %>" alt="">
+              <p class="text-sm font-semibold"><%= post.user.username %></p>
+              <!-- <h1 class="text-gray-500">.</h1> -->
+              <!-- <p class="text-sm text-gray-500">2h</p> -->
+            </div>
+          </a>
           <div class="postOfFollower">
             <img
               src="/images/uploads/<%= post.image %>"
@@ -51,8 +57,12 @@
             />
           </div>
           <div class="insightsOfFollower">
-            <p><i class="fa-regular fa-heart cursor-pointer"></i></p>
-            <p class="text-sm flex"><%= post.likes.length %> likes</p>
+            <% if(post.likes.indexOf(user._id) !== -1){ %>
+              <p><a href="/tolike/post/<%= post._id %>"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a></p>
+              <% }else{ %>
+                <p><a href="/tolike/post/<%= post._id %>"><i class="fa-regular fa-heart cursor-pointer"></i></a></p>
+            <% } %>
+            <p class="text-sm"><%= post.likes.length %> likes</p>
           </div>
           <div class="descriptionOfFollower">
             <p class="text-sm font-semibold"><a href=""><%= post.user.username %></a></p>
@@ -66,6 +76,6 @@
     </div>
     <% include ./nav.ejs %>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script src="/javascripts/home.js"></script> -->
+    <script src="/javascripts/viewpost.js"></script>
   </body>
 </html>

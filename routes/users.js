@@ -34,6 +34,18 @@ var usersSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    }
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", 
+    }
+  ],
 });
 
 usersSchema.plugin(plm);

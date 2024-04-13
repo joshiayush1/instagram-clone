@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/profile.css" />
+    <link rel="stylesheet" href="/stylesheets/viewprofile.css" />
   </head>
   <body>
     <div class="cont">
@@ -12,36 +12,54 @@
         <div class="outerDivOfIfAndEdit">
           <div class="dp">
             <% if(user.profilePicture){ %>
-              <img
+            <img
               class="cursor-pointer"
               src="/images/uploads/<%= user.profilePicture %>"
               alt=""
-              />
-           <% } %>
-            </div>
+            />
+            <% } %>
+          </div>
           <div class="idAndEditPhoto">
             <p><%= user.username %></p>
+            <% if(user.followers.indexOf(user2._id) !== -1){ %>
+            <a href="/follow/user/<%= user._id %>" class="w-full">
+              <button
+                class="text-sm font-semibold"
+                style="
+                  border: 2px solid rgb(200, 200, 200, 0.4);
+                  background-color: rgb(200, 200, 200, 0.4);
+                  color: black;
+                "
+              >
+                Following
+              </button>
+            </a>
+            <% }else { %>
+            <a href="/follow/user/<%= user._id %>" class="w-full">
+              <button class="text-sm font-semibold">
+                Follow
+              </button>
+            </a>
+            <% } %>
           </div>
         </div>
         <div class="someUserData">
           <p class="font-semibold"><%= user.fullname %></p>
-          <p>
-            <%= user.description %>
-          </p>
+          <p><%= user.description %></p>
         </div>
       </div>
 
       <div class="insights">
         <div class="postscount">
-          <h3>1</h3>
+          <h3>0</h3>
           <p>posts</p>
         </div>
         <div class="followersCount cursor-pointer">
-          <h3>100</h3>
+          <h3><%= user.followers.length %></h3>
           <p>followers</p>
         </div>
         <div class="followingCount cursor-pointer">
-          <h3>100</h3>
+          <h3><%= user.following.length %></h3>
           <p>following</p>
         </div>
       </div>
@@ -52,13 +70,10 @@
         <div class="posts">
           <div class="post">
             <% user.posts.forEach(function(e){ %>
-              <a href="/post/<%= e._id %>">
-                <img
-                src="/images/uploads/<%= e.image %>"
-                alt=""
-                />
-              </a>
-              <% }) %>
+            <a href="/post/<%= e._id %>">
+              <img src="/images/uploads/<%= e.image %>" alt="" />
+            </a>
+            <% }) %>
           </div>
         </div>
       </div>

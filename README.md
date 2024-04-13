@@ -11,15 +11,10 @@ This project is an exact replica of Instagram, featuring both frontend and backe
 
 
 Pages and Features:
-
 Home: Displays stories of followed accounts and posts of followed users. Users can like posts.
-
 Search: Enables users to search for accounts.
-
 Feed: Shows all uploaded posts. Users can like posts.
-
 Add Post: Allows users to upload a post.
-
 Profile: Provides options to edit profile, logout, view user's uploaded posts, total posts, followers, and following count.
 
 

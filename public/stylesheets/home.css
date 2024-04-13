@@ -150,13 +150,12 @@ body {
 }
 
 .insightsOfFollower i{
-  height: 40px;
-  width: 40px;
-  padding: 0px 0 0 3px;
+  font-size: 23px;
+  margin: 10px 0 10px 3px;
 }
 
 .descriptionOfFollower {
-  padding: 0 12px 0 10px;
+  padding: 5px 12px 0 10px;
   width: 100%;
   /* border: 2px solid rebeccapurple; */
   display: flex;

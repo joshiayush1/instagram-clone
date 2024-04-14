@@ -22,6 +22,17 @@ var postsSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
+  comments: [
+    {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    content: String,
+    username: String,
+    profilePicture: String,
+  }
+  ],
 });
 
 module.exports = mongoose.model("Post", postsSchema);

@@ -16,10 +16,6 @@ router.get("/signin", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });
 
-// router.get("/nav", function (req, res) {
-//   res.render("nav");
-// });
-
 router.get("/profile", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({
     username: req.session.passport.user,
@@ -107,6 +103,25 @@ router.get("/tolike/post/:postId", isLoggedIn, async function (req, res) {
   await post.save();
   res.redirect("/post/" + req.params.postId);
 
+});
+
+router.get("/comments/post/:postId", isLoggedIn, async function(req, res){
+  const user = await usersModel.findOne({ username: req.session.passport.user });
+  const post = await postsModel.findOne({_id: req.params.postId}).populate("comments");
+  res.render("comments", {post, user});
+});
+
+router.post("/tocomments/post/:postId", isLoggedIn, async function(req, res){
+  const user = await usersModel.findOne({ username: req.session.passport.user });
+  const post = await postsModel.findOne({ _id: req.params.postId });
+
+  const { username, profilePicture } = user; 
+  const { comment } = req.body; 
+
+  const value = req.body.comment; 
+  post.comments.push({ user: user._id, content: value, username, profilePicture }); 
+  await post.save();
+  res.redirect("/comments/post/" + req.params.postId);
 });
 
 router.get("/follow/user/:userId", async function(req, res){

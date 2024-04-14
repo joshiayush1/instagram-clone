@@ -95,13 +95,18 @@
     }
   }
   
+  .likesAndComments{
+    display: flex;
+    font-size: 23px;
+  }
+
   .insightsOfFollower {
     height: 50px;
-    width: 100%;
+    width: auto;
     /* border: 2px solid yellow; */
     display: flex;
     justify-content: center;
-    padding: 0px 12px 0 8px;
+    padding: 0px 5px 0 8px;
     flex-direction: column;
   }
   
@@ -109,6 +114,7 @@
     font-size: 23px;
     margin: 10px 0 10px 3px;
   }
+  
   
   .descriptionOfFollower {
     padding: 5px 12px 0 10px;
@@ -120,6 +126,22 @@
   
   }
   
+  .showComments{
+    /* width: 100%; */
+    /* height: auto; */
+    /* border: 2px solid black; */
+    margin: 2px 0;
+    display: flex;
+  }
+  
+  .showComments p{
+    width: 100%;
+    height: auto;
+    padding: 0 10px;
+    outline: none;
+    color: rgb(98, 98, 98);
+  }
+
   .dateOfUploadedPost{
     padding: 0 12px 0 10px;
   }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/comments.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <div class="heading">
+        <h2>Comments</h2>
+      </div>
+      <div class="comments">
+        <% post.comments.forEach(function(e){ %>
+        <div class="comment">
+          <div class="pp">
+            <img
+              src="/images/uploads/<%= e.profilePicture %>"
+              alt=""
+            />
+          </div>
+          <div class="userAndCom">
+            <p id="userD"><%= e.username %></p>
+            <p id="commentD"><%= e.content %></p>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <form action="/tocomments/post/<%= post._id %>" method="post">
+      <div class="userInput">
+          <input type="text" placeholder="Add a comment..." name="comment"/>
+          <button type="submit">Post</button>
+        </div>
+    </form>
+    </div>
+  </body>
+</html>

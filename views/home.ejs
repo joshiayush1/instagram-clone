@@ -183,7 +183,8 @@
           <% } %>
             <div class="byFollower">
               <img src="/images/uploads/<%= e.user.profilePicture %>" alt="">
-              <p class="text-sm font-semibold"><%= e.user.username %></p>
+              <p class="text-sm font-semibold">
+                <%= e.user.username %></p>
               <!-- <h1 class="text-gray-500">.</h1> -->
               <!-- <p class="text-sm text-gray-500">2h</p> -->
             </div>
@@ -194,20 +195,36 @@
               alt=""
             />
           </div>
-          <div class="insightsOfFollower">
-            <% if(e.likes.indexOf(user._id) !== -1){ %>
-              <p><a href="/like/post/<%= e._id %>"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a></p>
-              <% }else{ %>
-                <p><a href="/like/post/<%= e._id %>"><i class="fa-regular fa-heart cursor-pointer"></i></a></p>
-            <% } %>
-            <p class="text-sm"><%= e.likes.length %> likes</p>
+          <div class="likesAndComments">
+            <div class="insightsOfFollower">
+              <% if(e.likes.indexOf(user._id) !== -1){ %>
+                <p><a href="/like/post/<%= e._id %>"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a></p>
+                <% }else{ %>
+                  <p><a href="/like/post/<%= e._id %>"><i class="fa-regular fa-heart cursor-pointer"></i></a></p>
+                  <% } %>
+                  <p class="text-sm"><%= e.likes.length %> likes</p>
+                </div>
+                <div class="comments">
+                  <a href="/comments/post/<%= e._id %>"><i class="fa-regular fa-comment"></i></a>
+                </div>
           </div>
           <div class="descriptionOfFollower">
-            <p class="text-sm font-semibold"><a href=""><%= e.user.username %></a></p>
+            <% if(e.user._id.equals(user._id)){ %>
+              <a href="/profile">
+              <% }else{ %>
+                <a href="/profile/<%= e.user._id %>">
+            <% } %>
+            <p class="text-sm font-semibold"><%= e.user.username %></p>
+          </a></a>
             <p class="text-sm"><%= e.caption %></p>
           </div>
+          <div class="showComments">
+            <a href="/comments/post/<%= e._id %>">
+              <p class="text-sm">View all <%= e.comments.length %> comments</p>
+            </a>
+          </div>
           <div class="dateOfUploadedPost">
-            <p class="text-xs text-gray-500"><%= timeSince(e.createdAt) %> ago</p>
+            <p class="text-xs"><%= timeSince(e.createdAt) %> ago</p>
           </div>
         </div>
         <% }) %>

@@ -1,3 +1,3 @@
 document.querySelector("#post").addEventListener("click", function(){
-    document.querySelector("#ipt").click();
+    document.querySelector("#ipt").submit();
 })

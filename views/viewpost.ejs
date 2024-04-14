@@ -56,6 +56,7 @@
               alt=""
             />
           </div>
+          <div class="likesAndComments">
           <div class="insightsOfFollower">
             <% if(post.likes.indexOf(user._id) !== -1){ %>
               <p><a href="/tolike/post/<%= post._id %>"><i class="fa-solid fa-heart" style="color: #ff0000;"></i></a></p>
@@ -63,10 +64,19 @@
                 <p><a href="/tolike/post/<%= post._id %>"><i class="fa-regular fa-heart cursor-pointer"></i></a></p>
             <% } %>
             <p class="text-sm"><%= post.likes.length %> likes</p>
+          </div> 
+            <div class="comments">
+              <a href="/comments/post/<%= post._id %>"><i class="fa-regular fa-comment"></i></a>
+            </div>
           </div>
           <div class="descriptionOfFollower">
             <p class="text-sm font-semibold"><a href=""><%= post.user.username %></a></p>
             <p class="text-sm"><%= post.caption %></p>
+          </div>
+          <div class="showComments">
+            <a href="/comments/post/<%= post._id %>">
+              <p class="text-sm">View all <%= post.comments.length %> comments</p>
+            </a>
           </div>
           <div class="dateOfUploadedPost">
             <p class="text-xs text-gray-500"><%= timeSince(post.createdAt) %> ago</p>

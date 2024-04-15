@@ -150,7 +150,7 @@ body {
   /* border: 2px solid yellow; */
   display: flex;
   justify-content: center;
-  padding: 0px 5px 0 8px;
+  padding: 0px 5px 0 10px;
   flex-direction: column;
 }
 

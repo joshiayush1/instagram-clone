@@ -17,12 +17,11 @@ router.get("/signin", function (req, res) {
 });
 
 router.get("/profile", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({
-    username: req.session.passport.user,
-  }).populate("posts");
-  // const posts = await postsModel.find({
-  //   username: req.session.passport.user,
-  // });
+  const user = await usersModel
+    .findOne({
+      username: req.session.passport.user,
+    })
+    .populate("posts");
   res.render("profile", { nav: true, user });
 });
 
@@ -57,7 +56,9 @@ router.post(
 
 router.get("/profile/:userId", isLoggedIn, async function (req, res) {
   const user = await usersModel.findById(req.params.userId).populate("posts");
-  const user2 = await usersModel.findOne({username: req.session.passport.user});
+  const user2 = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
   res.render("viewprofile", { nav: true, user, user2 });
 });
 
@@ -65,25 +66,34 @@ router.get("/home", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({
     username: req.session.passport.user,
   });
-  const posts = await postsModel.find().populate("user");
+  const followed = user.following;
+  console.log(followed);
+
+  const user2 = await usersModel.find({ _id: { $in: followed } });
+  const posts = await postsModel
+    .find({ user: { $in: followed } })
+    .populate("user");
   console.log(posts);
-  res.render("home", { nav: true, posts, user });
+  res.render("home", { nav: true, posts, user, user2 });
 });
 
 router.get("/feed", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({username: req.session.passport.user});
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
   const posts = await postsModel.find().populate("user");
   res.render("feed", { nav: true, user, posts });
 });
 
 router.get("/like/post/:postId", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({username: req.session.passport.user});
-  const post = await postsModel.findById({_id: req.params.postId});
-  
-  if(post.likes.indexOf(user._id) === -1){
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  const post = await postsModel.findById({ _id: req.params.postId });
+
+  if (post.likes.indexOf(user._id) === -1) {
     post.likes.push(user._id);
-  }
-  else{
+  } else {
     post.likes.splice(post.likes.indexOf(user._id), 1);
   }
   await post.save();
@@ -91,60 +101,74 @@ router.get("/like/post/:postId", isLoggedIn, async function (req, res) {
 });
 
 router.get("/tolike/post/:postId", isLoggedIn, async function (req, res) {
-  const user = await usersModel.findOne({username: req.session.passport.user});
-  const post = await postsModel.findById({_id: req.params.postId});
-  
-  if(post.likes.indexOf(user._id) === -1){
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  const post = await postsModel.findById({ _id: req.params.postId });
+
+  if (post.likes.indexOf(user._id) === -1) {
     post.likes.push(user._id);
-  }
-  else{
+  } else {
     post.likes.splice(post.likes.indexOf(user._id), 1);
   }
   await post.save();
   res.redirect("/post/" + req.params.postId);
-
 });
 
-router.get("/comments/post/:postId", isLoggedIn, async function(req, res){
-  const user = await usersModel.findOne({ username: req.session.passport.user });
-  const post = await postsModel.findOne({_id: req.params.postId}).populate("comments");
-  res.render("comments", {post, user});
+router.get("/comments/post/:postId", isLoggedIn, async function (req, res) {
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  const post = await postsModel
+    .findOne({ _id: req.params.postId })
+    .populate("comments");
+  res.render("comments", { post, user });
 });
 
-router.post("/tocomments/post/:postId", isLoggedIn, async function(req, res){
-  const user = await usersModel.findOne({ username: req.session.passport.user });
+router.post("/tocomments/post/:postId", isLoggedIn, async function (req, res) {
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
   const post = await postsModel.findOne({ _id: req.params.postId });
 
-  const { username, profilePicture } = user; 
-  const { comment } = req.body; 
+  const { username, profilePicture } = user;
+  const { comment } = req.body;
 
-  const value = req.body.comment; 
-  post.comments.push({ user: user._id, content: value, username, profilePicture }); 
+  const value = req.body.comment;
+  post.comments.push({
+    user: user._id,
+    content: value,
+    username,
+    profilePicture,
+  });
   await post.save();
   res.redirect("/comments/post/" + req.params.postId);
 });
 
-router.get("/follow/user/:userId", async function(req, res){
-  const user = await usersModel.findOne({username: req.session.passport.user});
-  const user2 = await usersModel.findOne({_id: req.params.userId});
+router.get("/follow/user/:userId", async function (req, res) {
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
+  const user2 = await usersModel.findOne({ _id: req.params.userId });
 
-  if(user2.followers.indexOf(user._id) === -1){
+  if (user2.followers.indexOf(user._id) === -1) {
     user2.followers.push(user._id);
     user.following.push(user2._id);
-  }
-  else{
+  } else {
     user2.followers.splice(user2.followers.indexOf(user._id), 1);
     user.following.splice(user.following.indexOf(user2._id), 1);
   }
   await user.save();
   await user2.save();
   res.redirect("/profile/" + req.params.userId);
-})
+});
 
-router.get('/post/:postId', async (req, res) => {
-  const user = await usersModel.findOne({username: req.session.passport.user});
+router.get("/post/:postId", async (req, res) => {
+  const user = await usersModel.findOne({
+    username: req.session.passport.user,
+  });
   const post = await postsModel.findById(req.params.postId).populate("user");
-  res.render('viewpost', { post, user });
+  res.render("viewpost", { post, user });
 });
 
 router.get("/searchuser", isLoggedIn, function (req, res) {
@@ -152,8 +176,8 @@ router.get("/searchuser", isLoggedIn, function (req, res) {
 });
 
 router.get("/searchuser/:username", isLoggedIn, async function (req, res) {
-  const regex = new RegExp(`^${req.params.username}`, 'i');
-  const users = await usersModel.find({username: regex});
+  const regex = new RegExp(`^${req.params.username}`, "i");
+  const users = await usersModel.find({ username: regex });
   res.json(users);
   res.render("searchuser", { nav: true });
 });

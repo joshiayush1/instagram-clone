@@ -209,7 +209,7 @@
                 </div>
           </div>
           <div class="descriptionOfFollower">
-            <% if(e.user._id.equals(user._id)){ %>
+            <% if(e.user.equals(user._id)){ %>
               <a href="/profile">
               <% }else{ %>
                 <a href="/profile/<%= e.user._id %>">

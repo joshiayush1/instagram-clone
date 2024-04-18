@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="1076973195205-ej31kbtb7b1f0o3m8cdanlj330elbb2h.apps.googleusercontent.com"
+    />
+    <title>Instagram</title>
+    <link rel="stylesheet" href="/stylesheets/story.css" />
+  </head>
+  <body>
+    <div class="cont">
+      <form action="/add/story" id="form" method="post" enctype="multipart/form-data">
+        <div class="innerCont">
+          <div class="upperCont">
+            <div class="textImage">
+              <img src="/images/instagram-text-image.png" alt="" />
+            </div>
+            <div class="inptBox">
+              <input
+                type="file"
+                name="photo"
+                id="ipt"
+                hidden
+                required
+              />
+              <div class="signUpbtn">
+                <label id="iptbtn" class="cursor-pointer w-full flex justify-center">Add Story</label> <!-- Clicking this label will trigger the file input -->
+              </div>
+              <div class="signUpbtn" style="background-color: crimson;">
+                <button id="btn" type="submit">Submit</button> <!-- This button is used to submit the form -->
+              </div>
+            <div class="boxOfLine">
+              <div class="line"></div>
+              <p>OR</p>
+              <div class="line"></div>
+            </div>
+          </div>
+          <div class="signUpbtn">
+            <button><a href="/story/<%= user._id %>">View Story</a></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="/javascripts/story.js"></script>
+  </body>
+</html>

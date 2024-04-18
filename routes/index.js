@@ -66,6 +66,7 @@ router.get("/home", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({
     username: req.session.passport.user,
   });
+  
   const followed = user.following;
   console.log(followed);
 
@@ -84,6 +85,36 @@ router.get("/feed", isLoggedIn, async function (req, res) {
   const posts = await postsModel.find().populate("user");
   res.render("feed", { nav: true, user, posts });
 });
+
+router.get("/story", isLoggedIn, async function(req, res){
+  const user = await usersModel.findOne({username: req.session.passport.user});
+  res.render("story", {user});
+})
+
+router.post("/add/story", isLoggedIn, upload.single("photo"), async function(req, res){
+  try {
+    const user = await usersModel.findOne({username: req.session.passport.user});
+    if (req.file) {
+      user.story = req.file.filename;
+    }
+    await user.save();
+    res.redirect("/story");
+  } catch (error) {
+    console.error("Error adding story:", error);
+    res.status(500).send("Error adding story");
+  }
+});
+
+router.get("/story/:userId", isLoggedIn, async function(req, res){
+  try{
+  const user = await usersModel.findById({_id: req.params.userId}).populate("story");
+  console.log(user.story);
+
+  res.render("viewstory", {user});
+    } catch(error){
+      res.status(500).send("Something went wrong...");
+    }
+})
 
 router.get("/like/post/:postId", isLoggedIn, async function (req, res) {
   const user = await usersModel.findOne({

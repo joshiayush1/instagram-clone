@@ -53,6 +53,30 @@ body {
   /* border: 2px solid lawngreen; */
   display: flex;
 }
+.storyy{
+  min-width: 80px;
+  height: 100%;
+  /* border: 2px solid indianred; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  /* margin: 0 0 0 18px; */
+  cursor: pointer;
+} 
+  
+  .storyy img{
+  width: 80px;
+  height: 80px;
+  border-radius: 99px;
+  background-size: cover;
+  border: 3px solid rgb(232, 56, 85);
+}
+
+.storyy p {
+  font-size: small;
+}
 
 .story {
   min-width: 80px;

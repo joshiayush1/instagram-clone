@@ -12,11 +12,13 @@
         <div class="outerDivOfIfAndEdit">
           <div class="dp">
             <% if(user.profilePicture){ %>
-              <img
-              class="cursor-pointer"
-              src="/images/uploads/<%= user.profilePicture %>"
-              alt=""
-              />
+              <a href="/story">
+                <img
+                class="cursor-pointer"
+                src="/images/uploads/<%= user.profilePicture %>"
+                alt=""
+                />
+              </a>
            <% } %>
             </div>
           <div class="idAndEditPhoto">

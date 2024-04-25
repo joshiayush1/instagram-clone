@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var usersModel = require("./users");
 var postsModel = require("./posts");
+var storyModel = require("./story");
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 const upload = require("./multer.js");
@@ -67,7 +68,7 @@ router.get("/home", isLoggedIn, async function (req, res) {
     username: req.session.passport.user,
   });
   
-  const followed = user.following;
+  const followed = user.following[0];
   console.log(followed);
 
   const user2 = await usersModel.find({ _id: { $in: followed } });
@@ -75,7 +76,7 @@ router.get("/home", isLoggedIn, async function (req, res) {
     .find({ user: { $in: followed } })
     .populate("user");
   console.log(posts);
-  res.render("home", { nav: true, posts, user, user2 });
+  res.render("home", { nav: true, posts, user, user2, followed });
 });
 
 router.get("/feed", isLoggedIn, async function (req, res) {
@@ -86,18 +87,26 @@ router.get("/feed", isLoggedIn, async function (req, res) {
   res.render("feed", { nav: true, user, posts });
 });
 
-router.get("/story", isLoggedIn, async function(req, res){
-  const user = await usersModel.findOne({username: req.session.passport.user});
+router.get("/story/:userId", isLoggedIn, async function(req, res){
+  const user = await usersModel.findOne({_id: req.params.userId});
   res.render("story", {user});
 })
 
-router.post("/add/story", isLoggedIn, upload.single("photo"), async function(req, res){
+router.post("/add/story/:userId", isLoggedIn, upload.single("photo"), async function(req, res){
   try {
-    const user = await usersModel.findOne({username: req.session.passport.user});
-    if (req.file) {
-      user.story = req.file.filename;
-    }
+    // Find the user based on the session
+    const user = await usersModel.findOne({ _id: req.params.userId });
+    
+    // Create a new story document
+    const newStory = await storyModel.create(
+      { image: req.file.filename,
+        user: user._id,
+       });
+
+    // Associate the story with the user
+    await newStory.save();
     await user.save();
+
     res.redirect("/story");
   } catch (error) {
     console.error("Error adding story:", error);
@@ -107,10 +116,9 @@ router.post("/add/story", isLoggedIn, upload.single("photo"), async function(req
 
 router.get("/story/:userId", isLoggedIn, async function(req, res){
   try{
-  const user = await usersModel.findById({_id: req.params.userId}).populate("story");
-  console.log(user.story);
-
-  res.render("viewstory", {user});
+  const user = await usersModel.findById({_id: req.params.userId});
+  const story = storyModel.find({user: req.params.userId});
+  res.render("viewstory", {user, story});
     } catch(error){
       res.status(500).send("Something went wrong...");
     }

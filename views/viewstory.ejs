@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/viewstory.css">
+    <link rel="icon" href="/images/instagram.png"/>
 </head>
 <body>
     <div class="cont">
-        <p><%= user.username %></p>
+        <p><%= story.user %></p>
         <div class="story">
-            <% user.story.forEach(function(story) { %>
-                <img src="/images/uploads/<%= story %>" alt="Story Image" class="rounded-lg">
+            <% story.forEach(function(story) { %>
+                <img src="/images/uploads/<%= story.image %>" alt="Story Image" class="rounded-lg">
             <% }) %>
         </div>
     </div>
